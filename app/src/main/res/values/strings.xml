@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Gabunada_Notes</string>
+    <string name="addbtn">ADD</string>
+    <string name="hint">Write Note...</string>
+</resources>

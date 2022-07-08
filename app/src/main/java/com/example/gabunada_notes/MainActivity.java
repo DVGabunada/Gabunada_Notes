@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<Note> notes;
-    ArrayAdapter<Note> notes_adapter;
+    NotesAdapter notes_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         btnAddListenerMethod();
         etNoteEnterListenerMethod();
     }
+
+
 
     private void etNoteEnterListenerMethod(){
         EditText etNote = findViewById(R.id.etNote);
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         notes.add(new Note("First Note"));
         notes.add(new Note("Second Note"));
 
-        notes_adapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_list_item_1, notes);
+        notes_adapter = new NotesAdapter(getBaseContext(), R.layout.note_layout, notes);
         lvList.setAdapter(notes_adapter);
 
         notes.add(new Note("Dan Vincent B. Gabunada"));

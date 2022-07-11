@@ -1,6 +1,7 @@
 package com.example.gabunada_notes;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -12,7 +13,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EditNoteDialogFragment.EditNoteDialogListener {
     ArrayList<Note> notes;
     NotesAdapter notes_adapter;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private void etNoteEnterListenerMethod(){
         EditText etNote = findViewById(R.id.etNote);
         etNote.setOnKeyListener(new View.OnKeyListener() {
+
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent keyEvent) {
                 if(keyEvent.getAction() == KeyEvent.ACTION_DOWN|| keyEvent.getAction() == KeyEvent.ACTION_DOWN
@@ -67,10 +69,21 @@ public class MainActivity extends AppCompatActivity {
         notes.add(new Note("First Note"));
         notes.add(new Note("Second Note"));
 
-        notes_adapter = new NotesAdapter(getBaseContext(), R.layout.note_layout, notes);
+        notes_adapter = new NotesAdapter(getBaseContext(), R.layout.note_layout, notes,getSupportFragmentManager());
         lvList.setAdapter(notes_adapter);
 
         notes.add(new Note("Dan Vincent B. Gabunada"));
 
+    }
+
+
+    @Override
+    public void onEditListListenerMethod(DialogFragment dialog) {
+        notes_adapter.onEditListListenerMethod(dialog);
+    }
+
+    @Override
+    public void onCanceltListenerMethod(DialogFragment dialog) {
+        notes_adapter.onCanceltListenerMethod(dialog);
     }
 }
